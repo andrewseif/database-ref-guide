@@ -1,0 +1,22 @@
+# image: https://hub.docker.com/r/dbeaver/cloudbeaver
+# config docs: https://github.com/dbeaver/cloudbeaver/wiki/Server-configuration#automatic-server-configuration
+
+version: "3.8"
+
+services:
+  cloudbeaver:
+      image: dbeaver/cloudbeaver:latest
+      container_name: beaver
+      restart: always
+      ports:
+       - '8080:8978'
+      volumes: 
+       - cloudbeaver:/opt/cloudbeaver/workspace            
+
+networks:
+  default:
+    name: bridge
+    external: true
+
+volumes:
+  cloudbeaver:
