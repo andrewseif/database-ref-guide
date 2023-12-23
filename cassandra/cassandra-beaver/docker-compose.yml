@@ -1,0 +1,40 @@
+# image: https://hub.docker.com/r/dbeaver/cloudbeaver
+# config docs: https://github.com/dbeaver/cloudbeaver/wiki/Server-configuration#automatic-server-configuration
+
+version: '2'
+
+services:
+  cassandra:
+    image: docker.io/bitnami/cassandra:4.1
+    ports:
+      - '7000:7000'
+      - '9042:9042'
+    volumes:
+      - 'cassandra:/bitnami'
+    environment:
+      - CASSANDRA_SEEDS=cassandra
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=cassandra
+    networks:
+      - cassandra
+
+  cloudbeaver:
+      image: dbeaver/cloudbeaver:latest
+      container_name: beaver
+      restart: always
+      ports:
+       - '8080:8978'
+      volumes: 
+       - cloudbeaver:/opt/cloudbeaver/workspace
+      networks:
+      - cassandra   
+
+networks:
+  cassandra:
+    driver: bridge
+
+volumes:
+  cloudbeaver:
+  cassandra:
+
+  
