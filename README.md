@@ -16,3 +16,10 @@ $ docker run --name some-cassandra2 -d --network some-network -e CASSANDRA_SEEDS
 ### different host cluster
 $ docker run --name some-cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=10.42.42.42 -p 7000:7000 cassandra:tag
 
+### TODO  
+1- which database belong to which CAP.
+2- isolations (Anomilies) + (serialization)& transactions: MySQL, Mongodb, Cassandra(optional) 
+3- defaults engines.
+4- Case Studies. 
+5- Pluggable storage engine.
+6- Pages. 
