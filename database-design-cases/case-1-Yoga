@@ -1,0 +1,124 @@
+Client requirements/ business requirements
+I have 3 Classes
+3 hours duration
+15 individual max (9-12 ,12-3, 3-6)
+Yoga
+Pilates
+Tai Chi
+Instructor for each class  (could contain more instructors per class in the future)
+
+
+I have 3 Packages(any name)
+      Package A : Yoga
+      Package B : Yoga, Pilates
+      Package C : Yoga, Pilates, Tai Chi
+
+You must subscribe to a package not a stand-alone class
+
+
+All Classes belong to at least one Package
+
+Attendance
+you must reserve at least 12 hours beforehand
+
+Subscriptions to these packages 
+Standard "9 classes combined of all classes allowed per month"
+Premium  "Can attend unlimited classes for this package per month"
+Payment Methods : In_Person , Payment Card , Wire Transfer
+Aggregations needed
+Must know which package is the most profitable
+Must know whether the classes were fully booked or not "Attendance is full"
+
+CAP theorem <---  We need high level of consistency so that attendance cannot go beyond the capacity of a class: when a customer makes a request to reserve an attendance
+
+CP <--- business requirement choice as the class attendance needs to be consistent AND we need to have a tolerance for nodes being down in the future for the new branches
+
+Relational DB <-- the data itself is structured and more inclined to be relational Chose PostgreSQL .. as the difference between the CP, Relational DBs is not too different and the onboarding would be easier for all of us to use PostgreSQL
+
+NOTE : MySQL is CA by default and to switch it to be CP we would need to have multi-master slave model which is too much effort with not too much in return compared to PostgreSQL as they would be almost similar in our use case
+ (edited)
+[10:35 PM]
+users:
+ 
+
+| Users                   | data_type        |
+|------------------|----------------|
+| id                          | serial                |
+| first_name           | varchar(20)      |
+| last_name            | varchar(20)     |
+| phone                  | varchar(15)      |
+| email                    | varchar(100)    |
+| nationality           | varchar(20)      |
+| date-of-birth      | date                  |
+| role                      | enum                |
+
+
+classes:
+ 
+| Column | Type | Nullable | 
+|--------------|------------|----------| 
+| class_id | integer | not null | 
+| title | text | not null | 
+| description | text | | 
+| duration | integer | not null | 
+| capacity | integer | not null |
+
+packages:
+ 
+| Column | Type | Nullable | 
+|--------------|------------|----------| 
+| package_id | integer | not null | 
+| name | text | not null | 
+| price | numeric | not null |
+
+
+subscriptions:
+ 
+| Column | Type | Nullable | 
+|----------------|------------|----------| 
+| id | integer | not null | 
+| student_id | integer | not null |
+| subscription_date | date | not null | 
+| package_id | integer | not null |  
+| number_of_sessions | integer | not null | 
+
+
+payments:
+ 
+| Column | Type | Nullable | 
+|--------------|------------|----------| 
+| payment_id | integer | not null | 
+| subscription_id | integer | not null | 
+| amount | numeric | not null | 
+| payment_date | date | not null | 
+| payment_method | text | not null | 
+| payment_status | enum | not null |
+
+
+
+attendance:
+ 
+| Column | Type | Nullable | 
+|--------------|------------|----------| 
+| student_id | integer | not null | 
+| class_id | integer | not null | 
+| attendance_date | date | not null |
+
+
+packages_classes:
+ 
+| Column | Type | Nullable | 
+|--------------|------------|----------| 
+| id | serial | not null | 
+| class_id | integer | not null | 
+| package_id | integer | not null |
+ (edited)
+[10:35 PM]
+class_instuctors:
+ 
+
+| Column | Type | Nullable | 
+|--------------|------------|----------| 
+| id | serial | not null | 
+| class_id | integer | not null | 
+| instructor_id | integer | not null |
