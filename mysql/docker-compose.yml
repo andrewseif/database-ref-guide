@@ -1,8 +1,7 @@
 # Use root/admin as user/password credentials
-version: '3.1'
+version: "3.1"
 
 services:
-
   db:
     image: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
@@ -10,6 +9,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: admin
+      SQLDATA: /data/mysql
+    volumes:
+      - mysql:/data/mysql
 
   adminer:
     image: adminer

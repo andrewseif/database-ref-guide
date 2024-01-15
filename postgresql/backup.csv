@@ -1,0 +1,4 @@
+id,name,balance,type,open_date
+1,Ahmed,100000.00,Checking,2023-03-05
+2,Mostafa,1009000.00,Savings,2023-03-05
+3,Mohanad,1010101.00,Current,2023-03-06
