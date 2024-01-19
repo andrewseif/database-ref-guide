@@ -1,20 +1,14 @@
-# verbose-doodle-databases
+# Database Reference Guide
 
-list of docker compose files for databases.
+This guide contains a reference for all old/modern databases it covers the following items:
 
-## CloudBeaver
+- Plugable Storage Engines.
+- How does the DB handle different operations?
+- How does the database handle partitioning, sharding, replication?
+- What type of replication does the DB support?
+- How does the database handle sharding?
 
-docker run --name cloudbeaver --rm -ti -p 8080:8978 -v /opt/cloudbeaver/workspace dbeaver/cloudbeaver:latest
 
-## Cassandra
-
-docker run --name some-cassandra --network some-network -d cassandra:tag
-
-### same host cluster 
-$ docker run --name some-cassandra2 -d --network some-network -e CASSANDRA_SEEDS=some-cassandra cassandra:tag
-
-### different host cluster
-$ docker run --name some-cassandra -d -e CASSANDRA_BROADCAST_ADDRESS=10.42.42.42 -p 7000:7000 cassandra:tag
 
 ### TODO  
 1- which database belong to which CAP.
