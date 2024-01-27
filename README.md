@@ -11,9 +11,9 @@ This guide contains a reference for all old/modern databases it covers the follo
 
 
 ### TODO  
-1- which database belong to which CAP.
-2- isolations (Anomilies) + (serialization)& transactions: MySQL, Mongodb, Cassandra(optional) 
-3- defaults engines.
-4- Case Studies. 
-5- Pluggable storage engine.
-6- Pages. 
+1. which database belong to which CAP.
+2. isolations (Anomilies) + (serialization)& transactions: MySQL, Mongodb, Cassandra(optional) 
+3. defaults engines.
+4. Case Studies. 
+5. Pluggable storage engine.
+6. Pages. 
